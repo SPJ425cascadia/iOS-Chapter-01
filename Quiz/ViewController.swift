@@ -9,10 +9,20 @@ class ViewController: UIViewController {
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var answerLabel: UILabel!
     
-
     var currentQuestionIndex: Int = 0
     let quiz:Quiz
     
+    // Injecting a new Quiz object when the ViewController is created
+    init(quiz:Quiz){
+        self.quiz = quiz
+        super.init(nibName: nil, bundle: nil)
+    }
+    // Since we override one init, we need to include this required one as well
+    required init?(coder decoder: NSCoder) {
+        self.quiz = Quiz()
+        super.init(coder: decoder)
+    }
+    //TODO : Modify the functions below to use the quiz objects properties and methods
     override func viewDidLoad() {
         super.viewDidLoad()
         questionLabel.text = questions[currentQuestionIndex]
@@ -28,7 +38,6 @@ class ViewController: UIViewController {
         questionLabel.text = question
         answerLabel.text = "???"
     }
-    
     
     @IBAction func showAnswer(_ sender: UIButton) {
         let answer: String = answers[currentQuestionIndex]
