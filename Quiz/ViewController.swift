@@ -1,6 +1,5 @@
 //
-//  Copyright © 2015 Big Nerd Ranch
-//
+//  Created by Brian Bansenauer, modified from iOS Programming 6ed, Big Nerd Ranch
 
 import UIKit
 
@@ -10,27 +9,17 @@ class ViewController: UIViewController {
     @IBOutlet var answerLabel: UILabel!
     
     var currentQuestionIndex: Int = 0
-    let quiz:Quiz
+    let quiz:Quiz = Quiz() //This creates a Quiz object model to provide the quiz data, questions and answers
     
-    // Injecting a new Quiz object when the ViewController is created
-    init(quiz:Quiz){
-        self.quiz = quiz
-        super.init(nibName: nil, bundle: nil)
-    }
-    // Since we override one init, we need to include this required one as well
-    required init?(coder decoder: NSCoder) {
-        self.quiz = Quiz()
-        super.init(coder: decoder)
-    }
     //TODO : Modify the functions below to use the quiz objects properties and methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        questionLabel.text = questions[currentQuestionIndex]
+        questionLabel.text = questions[currentQuestionIndex] //The questions array has been moved to the quiz class
     }
     
     @IBAction func showNextQuestion(_ sender: UIButton) {
         currentQuestionIndex += 1
-        if currentQuestionIndex == questions.count {
+        if currentQuestionIndex == questions.count { //The quiz class has a computed property for the number of questions
             currentQuestionIndex = 0
         }
         
@@ -40,7 +29,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showAnswer(_ sender: UIButton) {
-        let answer: String = answers[currentQuestionIndex]
+        let answer: String = answers[currentQuestionIndex] //The answers array has been moved to the quiz class
         answerLabel.text = answer
     }
 
