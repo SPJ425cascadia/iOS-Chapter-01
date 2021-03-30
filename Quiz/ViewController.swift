@@ -13,25 +13,23 @@ class ViewController: UIViewController {
     
     //TODO : Modify the functions below to use the quiz objects properties and methods
     override func viewDidLoad() {
-        super.viewDidLoad()
-        questionLabel.text = questions[currentQuestionIndex] //The questions array has been moved to the quiz class
-    }
-    
-    @IBAction func showNextQuestion(_ sender: UIButton) {
-        currentQuestionIndex += 1
-        if currentQuestionIndex == questions.count { //The quiz class has a computed property for the number of questions
-            currentQuestionIndex = 0
-        }
-        
-        let question: String = questions[currentQuestionIndex]
-        questionLabel.text = question
-        answerLabel.text = "???"
-    }
-    
-    @IBAction func showAnswer(_ sender: UIButton) {
-        let answer: String = answers[currentQuestionIndex] //The answers array has been moved to the quiz class
-        answerLabel.text = answer
-    }
+         super.viewDidLoad()
+         questionLabel.text = quiz.question(number: currentQuestionIndex) //The questions array has been moved to the quiz class
+     }
 
+     @IBAction func showNextQuestion(_ sender: UIButton) {
+         currentQuestionIndex += 1
+         if currentQuestionIndex == quiz.count { //The quiz class has a computed property for the number of questions
+             currentQuestionIndex = 0
+         }
+
+         let question: String = quiz.question(number: currentQuestionIndex)
+         questionLabel.text = question
+         answerLabel.text = "???"
+     }
+
+     @IBAction func showAnswer(_ sender: UIButton) {
+         let answer: String = quiz.answer(number: currentQuestionIndex) //The answers array has been moved to the quiz class
+         answerLabel.text = answer
+     }
 }
-
